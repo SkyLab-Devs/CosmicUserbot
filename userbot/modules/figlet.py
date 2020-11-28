@@ -49,9 +49,7 @@ async def figlet(fg):
         result = pyfiglet.figlet_format(text, font=font)
     else:
         result = pyfiglet.figlet_format(text)
-    await fg.respond("‌‌‎`{}`".format(result))
-    await fg.delete()
-
+    await fg.edit("‌‌‎`{}`".format(result))
 
 CMD_HELP.update(
     {
