@@ -16,19 +16,19 @@ async def figlet(fg):
     if fg.fwd_from:
         return
     CMD_FIG = {
-        "slant": "slant",
+        "SLANT": "slant",
         "3D": "3-d",
-        "5line": "5lineoblique",
-        "alpha": "alphabet",
-        "banner": "banner3-D",
-        "doh": "doh",
-        "iso": "isometric1",
-        "letter": "letters",
-        "allig": "alligator",
-        "dotm": "dotmatrix",
-        "bubble": "bubble",
-        "bulb": "bulbhead",
-        "digi": "digital",
+        "5LINE": "5lineoblique",
+        "ALPHA": "alphabet",
+        "BANNER": "banner3-D",
+        "DOH": "doh",
+        "ISO": "isometric1",
+        "LETTER": "letters",
+        "ALLIG": "alligator",
+        "DOTM": "dotmatrix",
+        "BUBBLE": "bubble",
+        "BULB": "bulbhead",
+        "DIGI": "digital",
     }
     ip = fg.pattern_match.group(1)
     input_str = ip.upper()
@@ -46,7 +46,7 @@ async def figlet(fg):
         except KeyError:
             await fg.edit("`Invalid selected font.`")
             return
-        result = pyfiglet.figlet_format(text, font=font.lower())
+        result = pyfiglet.figlet_format(text, font=font)
     else:
         result = pyfiglet.figlet_format(text)
     await fg.respond("‌‌‎`{}`".format(result))
