@@ -30,7 +30,8 @@ async def figlet(fg):
         "bulb": "bulbhead",
         "digi": "digital",
     }
-    input_str = fg.pattern_match.group(1)
+    ip = fg.pattern_match.group(1)
+    input_str = ip.upper()
     if "." in input_str:
         text, cmd = input_str.split(".", maxsplit=1)
     elif input_str is not None:
@@ -45,7 +46,7 @@ async def figlet(fg):
         except KeyError:
             await fg.edit("`Invalid selected font.`")
             return
-        result = pyfiglet.figlet_format(text, font=font)
+        result = pyfiglet.figlet_format(text, font=font.lower())
     else:
         result = pyfiglet.figlet_format(text)
     await fg.respond("‌‌‎`{}`".format(result))
