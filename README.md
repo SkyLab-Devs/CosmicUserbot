@@ -58,7 +58,7 @@ Make Sure to Do your repo private
 ## Groups and Support
 
 For discussion, bug reporting, and help, you can join [Project Fizilion](https://t.me/ProjectFizilionChat) support group.
-For further guide you can read this [Guide](https://telegra.ph/How-to-host-a-Telegram-Userbot-07-01-2).
+For further guide you can read this [Guide](https://frost2k5.games/ProjectFizilion).
 
 
 ## Credits
