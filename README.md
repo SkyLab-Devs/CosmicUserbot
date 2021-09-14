@@ -8,9 +8,9 @@
 
 [![Build](https://img.shields.io/github/workflow/status/PrajjuS/ProjectFizilion/FailedChecker?style=for-the-badge)](https://github.com/FrosT2k5/ProjectFizilion/actions "build")
 
-![Docker_Size](https://img.shields.io/docker/image-size/elytra8/fizfed?style=for-the-badge)
+![Docker_Size](https://img.shields.io/docker/image-size/frost2k5/dragonheart?style=for-the-badge)
 
-![Docker_Pulls](https://img.shields.io/docker/pulls/elytra8/fizfed?style=for-the-badge)
+![Docker_Pulls](https://img.shields.io/docker/pulls/frost2k5/dragonheart?style=for-the-badge)
 
 ![Spec](https://img.shields.io/badge/Made%20with-LOVE-black?style=for-the-badge)
 
