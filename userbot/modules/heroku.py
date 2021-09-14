@@ -86,7 +86,7 @@ async def variable(var):
                     BOTLOG_CHATID,
                     "#DELCONFIGVAR\n\n" "**Delete ConfigVar**:\n" f"`{variable}`",
                 )
-            await var.edit("`Information deleted...`")
+            await var.edit("`Information deleted, bot will restart...`")
             del heroku_var[variable]
         else:
             await var.edit("`Information don't exists...`")
@@ -106,14 +106,14 @@ async def set_var(var):
                 "**Change ConfigVar**:\n"
                 f"`{variable}` = `{value}`",
             )
-        await var.edit("`Information sets...`")
+        await var.edit("`Information set, bot will restart...`")
     else:
         if BOTLOG:
             await var.client.send_message(
                 BOTLOG_CHATID,
                 "#ADDCONFIGVAR\n\n" "**Add ConfigVar**:\n" f"`{variable}` = `{value}`",
             )
-        await var.edit("`Information added...`")
+        await var.edit("`Information added, bot will restart...`")
     heroku_var[variable] = value
 
 
