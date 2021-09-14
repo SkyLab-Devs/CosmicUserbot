@@ -13,8 +13,14 @@ RUN git clone https://github.com/FrosT2k5/ProjectFizilion -b demon /Fizilion
 # Copies session and config(if it exists)
 COPY ./sample_config.env ./userbot.session* ./config.env* /Fizilion/
 
+#
 # install required pypi modules
-RUN pip3 install -r requirements.txt
+# If you want to install new packages, you can do it here. dont install
+# entire requirements.txt, but just install your specific package
+# example: pip install colorama
+# note that this is just temporary and you installing package in docker image is proper way
+#
+
 
 # Finalization
 CMD ["python3","-m","userbot"]
