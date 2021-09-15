@@ -1122,7 +1122,7 @@ async def Noo(nooo):
 @register(outgoing=True, pattern="^Eww$")
 async def Eww(Ewe):
     t = "Eww"
-    for j in range(20):
+    for j in range(7):
         t = t[:-1] + "ww"
         await Ewe.edit(t)                      
                       
