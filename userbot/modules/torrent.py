@@ -77,7 +77,7 @@ async def _(event):
     except TimeoutError:
         return await event.edit("`Error: @TorrentHuntBot is not responding please try again later")
 
-    CMD_HELP.update(
+CMD_HELP.update(
         {
             "torrent": ".ts \
             \nUsage: Search Torrents \
