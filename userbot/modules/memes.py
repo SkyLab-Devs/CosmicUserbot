@@ -1099,8 +1099,8 @@ async def Pro(proo):
 @register(outgoing=True, pattern="^Brr$")
 async def Brr(burr):
     t = "Brr"
-    for j in range(20):
-        t = t[:-1] + "rr"
+    for j in range(10):
+        t = t + "rr"
         await burr.edit(t)
 
 
