@@ -19,7 +19,7 @@ COPY ./sample_config.env ./userbot.session* ./config.env* /Fizilion/
 # example: pip install colorama
 # note that this is just temporary and you installing package in docker image is proper way
 #
-RUN pip install -r requirements.txt
+RUN pip install --use-deprecated=legacy-resolver --use-feature 2020-resolver -r requirements.txt
 
 # Finalization
 CMD ["python3","-m","userbot"]
