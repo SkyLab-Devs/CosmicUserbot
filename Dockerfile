@@ -21,5 +21,8 @@ COPY ./sample_config.env ./userbot.session* ./config.env* /Fizilion/
 #
 RUN pip install --use-deprecated=legacy-resolver --use-feature 2020-resolver -r requirements.txt
 
+# Temporary
+RUN dnf install -y chromedriver
+
 # Finalization
 CMD ["python3","-m","userbot"]
