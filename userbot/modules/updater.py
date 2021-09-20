@@ -199,7 +199,7 @@ async def upstream(event):
             remove("output.txt")
         else:
             await event.edit(changelog_str)
-        return await event.respond('`do ".ota now/deploy" to update`')
+        return await event.respond('`do ".ota deploy" to update`')
 
     if force_update:
         await event.edit(
@@ -207,9 +207,7 @@ async def upstream(event):
         )
     else:
         await event.edit("`Updating Fizilion, please wait....`")
-    if conf == "now":
-        await update(event, repo, ups_rem, ac_br)
-    elif conf == "deploy":
+    if conf == "deploy":
         await deploy(event, repo, ups_rem, ac_br, txt)
     return
 
@@ -218,8 +216,6 @@ CMD_HELP.update(
     {
         "ota": ".ota"
         "\nUsage: Checks if the main userbot repository has any updates and shows a changelog if so."
-        "\n\n.ota now"
-        "\nUsage: Update your userbot, if there are any updates in your userbot repository."
         "\n\n.ota deploy"
         "\nUsage: Deploy your userbot at heroku, if there are any updates in your userbot repository."
     }
