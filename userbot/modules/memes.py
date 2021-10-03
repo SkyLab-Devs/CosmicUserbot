@@ -1071,14 +1071,12 @@ async def pressf(f):
             out += (arg * c) + "\n"
         await f.edit("`" + out + "`")
 
-
-@register(outgoing=True, pattern="^oof$")
-async def oof(woof):
-    t = "oof"
-    for j in range(25):
+@register(outgoing=True, pattern="^Oof$")
+async def Oof(woof):
+    t = "Oof"
+    for j in range(10):
         t = t[:-1] + "of"
         await woof.edit(t)
-
 
 @register(outgoing=True, pattern="^yeee$")
 async def yeee(plus):
