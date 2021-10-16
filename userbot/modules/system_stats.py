@@ -24,7 +24,7 @@ import psutil
 from git import Repo
 from telethon import __version__, version
 
-from userbot import ALIVE_LOGO, ALIVE_NAME, CMD_HELP, TIMEOUT, USERBOT_VERSION, StartTime, bot
+from userbot import ALIVE_LOGO, ALIVE_MESSAGE, ALIVE_NAME, CMD_HELP, TIMEOUT, USERBOT_VERSION, StartTime, bot
 from userbot.events import register
 
 # ================= CONSTANT =================
@@ -183,7 +183,10 @@ async def bot_ver(event):
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
     uptime = await get_readable_time((time.time() - StartTime))
-    output = (
+    if ALIVE_MESSAGE:
+        output = ALIVE_MESSAGE
+    else:
+        output = (
         f"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n"
         f"  **Fizilion** is up and running...\n"
         f">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n"
@@ -193,8 +196,7 @@ async def amireallyalive(alive):
         f"• `Bot Version    : {USERBOT_VERSION} `\n"
         f"• `Bot Uptime     : {uptime} `\n\n"
         f"Use `.help` for more info\n"
-
-    )
+        )
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
