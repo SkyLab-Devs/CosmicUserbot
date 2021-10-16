@@ -144,7 +144,7 @@ ALIVE_NAME = os.environ.get("ALIVE_NAME") or None
 ALIVE_LOGO = str(os.environ.get("ALIVE_LOGO") or "https://github.com/ElytrA8/ProjectFizilion/raw/dragon/resources/glitch.gif")
 
 # Custom Alive Message
-ALIVE_MESSAGE = str(os.environ.get("ALIVE_MESSAGE")) or None
+ALIVE_MESSAGE = str(os.environ.get("ALIVE_MESSAGE") or "")
 
 # .alive and .help timeout
 TIMEOUT = sb(os.environ.get("TIMEOUT") or "True")

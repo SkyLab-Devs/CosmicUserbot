@@ -183,10 +183,7 @@ async def bot_ver(event):
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
     uptime = await get_readable_time((time.time() - StartTime))
-    if ALIVE_MESSAGE:
-        output = ALIVE_MESSAGE
-    else:
-        output = (
+    DEFAULT_MESSAGE = (
         f"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n"
         f"  **Fizilion** is up and running...\n"
         f">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n"
@@ -197,6 +194,7 @@ async def amireallyalive(alive):
         f"• `Bot Uptime     : {uptime} `\n\n"
         f"Use `.help` for more info\n"
         )
+    output = ALIVE_MESSAGE or DEFAULT_MESSAGE
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
@@ -211,10 +209,10 @@ async def amireallyalive(alive):
     else:
         msg=await alive.edit(output)
         await sleep(30)
-        
+
     if TIMEOUT:
         await msg.delete()
-        
+
 
 @register(outgoing=True, pattern="^.aliveu")
 async def amireallyaliveuser(username):
