@@ -67,5 +67,5 @@ google_trans_new==1.1.9
 wget==3.2
 validators==0.18.2
 aiofiles
-git+https://github.com/code-rgb/search-engine-parser
+git+https://github.com/bisohns/search-engine-parser
 patool
