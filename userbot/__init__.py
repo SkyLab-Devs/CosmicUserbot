@@ -52,6 +52,9 @@ if version_info[0] < 3 or version_info[1] < 8:
     )
     quit(1)
 
+repo_lenk = Repo().remotes.origin.url.split('.git')[0].split('.com/')[1] if Repo().remotes.origin.url else "null"
+LOGS.info(f"Starting Project Fizilion on {repo_lenk}")
+
 # Check if the config was edited by using the already used variable.
 # Basically, its the 'virginity check' for the config file ;)
 CONFIG_CHECK = (os.environ.get(

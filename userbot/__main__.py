@@ -9,7 +9,7 @@ from importlib import import_module
 from sys import argv
 from asyncio import sleep
 from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
-from userbot import LOGS, bot, HEROKU_APP_NAME, HEROKU_API_KEY
+from userbot import LOGS, bot, HEROKU_APP_NAME, HEROKU_API_KEY, repo_lenk
 from userbot.modules import ALL_MODULES
 
 
@@ -26,7 +26,7 @@ except PhoneNumberInvalidError:
 for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
-LOGS.info("You are running Project Fizilion")
+LOGS.info(f"You are running Project Fizilion on {repo_lenk}")
 
 LOGS.info(
     "Congratulations, your userbot is now running !! Test it by typing .alive / .on in any chat."
