@@ -45,7 +45,7 @@ async def paste(pstl):
         else:
             message = message.message
 
-    # Dogbin
+    # Pasty
     await pstl.edit("`Pasting text . . .`")
     dta={"content":message}
     resp = post(DOGBIN_URL + "api/v2/pastes", json=dta)
@@ -61,7 +61,7 @@ async def paste(pstl):
             f"[Pasty URL]({dogbin_final_url})\n"
         )
     else:
-        reply_text = "`Failed to reach Dogbin`"
+        reply_text = "`Failed to reach Pasty`"
 
     await pstl.edit(reply_text)
     if BOTLOG:
