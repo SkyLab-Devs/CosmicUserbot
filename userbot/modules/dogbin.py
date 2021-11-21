@@ -59,6 +59,7 @@ async def paste(pstl):
         reply_text = (
             "`Pasted successfully!`\n\n"
             f"[Pasty URL]({dogbin_final_url})\n"
+            f"[Pasty RAW URL]({dogbin_final_url+'/raw'})"
         )
     else:
         reply_text = "`Failed to reach Pasty`"
