@@ -49,7 +49,6 @@ async def paste(pstl):
     await pstl.edit("`Pasting text . . .`")
     dta={"content":message}
     resp = post(DOGBIN_URL + "api/v2/pastes", json=dta)
-    print(resp.content)
 
     if resp.status_code in (200,201):
         response = resp.json()
@@ -61,15 +60,18 @@ async def paste(pstl):
             f"[Pasty URL]({dogbin_final_url})\n"
             f"[Pasty RAW URL]({dogbin_final_url+'/raw'})"
         )
+        if BOTLOG:
+            await pstl.client.send_message(
+                BOTLOG_CHATID,
+                f"Paste query was executed successfully\
+                \nPasty ID: `{key}`\
+                \nPasty Modification Token: `{response['modificationToken']}`\
+                \n\nModification Token can be used to edit your pasty paste, so do not share it with anyone"
+            )
     else:
         reply_text = "`Failed to reach Pasty`"
 
     await pstl.edit(reply_text)
-    if BOTLOG:
-        await pstl.client.send_message(
-            BOTLOG_CHATID,
-            f"Paste query was executed successfully",
-        )
 
 CMD_HELP.update(
     {
