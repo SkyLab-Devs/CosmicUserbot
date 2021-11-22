@@ -50,7 +50,7 @@ async def lyrics(lyric):
         return True
     else:
         await lyric.edit(
-            f"**Search query**:\n`{artist}` - `{song}`" f"\n\n```{songs.lyrics}```"
+            f"**Search query**:\n`{artist}` - `{song}`" f"\n\n{songs.lyrics}"
         )
         return True
 
