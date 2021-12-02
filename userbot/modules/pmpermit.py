@@ -151,9 +151,11 @@ async def auto_accept(event):
             async for message in event.client.iter_messages(
                 event.chat_id, reverse=True, limit=1
             ):
+                msgid = message.from_id.user_id
+                slfid = int(self_user.id)
                 if (
                     message.text is not UNAPPROVED_MSG
-                    and message.from_id == self_user.id
+                    and msgid == slfid
                 ):
                     try:
                         approve(event.chat_id)
