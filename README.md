@@ -10,6 +10,8 @@
 
 ![Spec](https://img.shields.io/badge/Made%20with-LOVE-black?style=for-the-badge)
 
+![Docker_Pulls](https://img.shields.io/docker/pulls/frost2k5/dragonheart?style=for-the-badge)
+
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
 ## Disclaimer
