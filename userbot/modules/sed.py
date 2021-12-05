@@ -103,8 +103,14 @@ async def sed(command):
             await command.edit("B O I! [Learn Regex](https://regexone.com)")
             return
         if text:
-            await command.edit(f"Did you mean? \n\n{text}")
-
+            if textx.from_id.user_id == (await command.client.get_me()).id:
+                try:
+                    await textx.edit(f"{text}")
+                    await command.delete()
+                except:
+                    await command.edit(f"{text}")
+            else:
+                await command.edit(f"{text}")
 
 CMD_HELP.update(
     {
