@@ -39,6 +39,7 @@ from telethon.tl.types import (
     ChatBannedRights,
     MessageEntityMentionName,
     MessageMediaPhoto,
+    User,
 )
 
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
@@ -270,25 +271,32 @@ async def ban(bon):
     # Delete message and then tell that the command
     # is done gracefully
     # Shout out the ID, so that fedadmins can fban later
+    if isinstance(user, User):
+        name = f'User {user.first_name}'
+        mention = f"USER: <a href='tg://user?id={user.id}'>{name}</a>"
+    else:
+        name = f"Channel {user.title}"
+        mention = f"CHANNEL: <a href='https://t.me/{user.id}'>{name}</a>"
     if reason:
         await bon.edit(
-            f"{user.first_name} was banned !!\
+            f"{name} was banned !!\
         \nID: `{str(user.id)}`\
         \nReason: {reason}"
         )
     else:
         await bon.edit(
-            f"{user.first_name} was banned !!\
+            f"{name} was banned !!\
         \nID: `{str(user.id)}`"
         )
     # Announce to the logging group if we have banned the person
     # successfully!
     if BOTLOG:
-        await bon.client.send_message(
+        await bot.send_message(
             BOTLOG_CHATID,
             "#BAN\n"
-            f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-            f"CHAT: {bon.chat.title}(`{bon.chat_id}`)",
+            f"{mention}\n"
+            f"CHAT: {bon.chat.title} (<code>{bon.chat_id}</code>)",
+            parse_mode="html",
         )
 
 
@@ -319,12 +327,20 @@ async def nothanos(unbon):
         await unbon.client(EditBannedRequest(unbon.chat_id, user.id, UNBAN_RIGHTS))
         await unbon.edit("```Unbanned Successfully```")
 
+        if isinstance(user, User):
+            name = f'User {user.first_name}'
+            mention = f"USER: <a href='tg://user?id={user.id}'>{name}</a>"
+        else:
+            name = f"Channel {user.title}"
+            mention = f"CHANNEL: <a href='https://t.me/{user.id}'>{name}</a>"
+
         if BOTLOG:
             await unbon.client.send_message(
                 BOTLOG_CHATID,
                 "#UNBAN\n"
-                f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-                f"CHAT: {unbon.chat.title}(`{unbon.chat_id}`)",
+                f"{mention}\n"
+                f"CHAT: {unbon.chat.title} (<code>{unbon.chat_id}</code>)",
+                parse_mode='html'
             )
     except UserIdInvalidError:
         await unbon.edit("`Uh oh my unban logic broke!`")
