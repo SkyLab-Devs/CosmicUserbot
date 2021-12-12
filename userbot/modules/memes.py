@@ -240,6 +240,23 @@ INSULT_STRINGS = [
     "Try to spend one day in a coffin and it will be yours forever.",
     "Hit Uranium with a slow moving neutron in your presence. It will be a worthwhile experience.",
     "You can be the first person to step on sun. Have a try.",
+    "I'd like to argue with you, but that'll be considered animal cruelty.",
+    "Even the microorganisms are smarter than you.",
+    "My sleeping cat is more interesting than your conversation.",
+    "You are as important as poisonous potatoes in minecraft.",
+    "You're that 0.1% bacteria that soap can't kill.",
+    "If earth was a living organism, you'd just be it's vestigial organ.",
+    "I wish that even my worst enemy won't have to deal with you.",
+    "I really think you can get PhD. in being stupid.",
+    "Now I know why aliens don't visit earth, it's because of you.",
+    "You are about one bit short of a byte.",
+    "I’ll never forget the first time we met. But I’ll keep trying.",
+    "Hold still. I’m trying to imagine you with a personality.",
+    "Your face makes onions cry.",
+    "Don’t be ashamed of who you are. That’s your parents’ job.",
+    "I thought of you today. It reminded me to take out the trash.",
+    "You're that one rotten mango that spoils the whole basket",
+    "Child, I’ve forgotten more than you ever knew.",
 ]
 
 UWUS = [
