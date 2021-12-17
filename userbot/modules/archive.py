@@ -25,7 +25,7 @@ async def _(event):
     mone = await edit_or_reply(event, "`Zipping in progress....`")
     if event.reply_to_msg_id:
         if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
-            os.makedirs(TMP_DOWNLOAD_DIRECTORY)
+            os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
         reply_message = await event.get_reply_message()
         try:
             c_time = time.time()
@@ -75,7 +75,7 @@ async def _(event):
                     f"`the given file {str(path)} is not zip file to unzip`"
                 )
             destination = os.path.join(
-                TMP_DOWNLOAD_DIRECTORY,
+                TEMP_DOWNLOAD_DIRECTORY,
                 os.path.splitext(os.path.basename(path))[0],
             )
             with zipfile.ZipFile(path, "r") as zip_ref:
