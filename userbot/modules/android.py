@@ -312,6 +312,32 @@ async def twrp(request):
     )
     await request.edit(reply)
 
+@register(outgoing=True, pattern=r"^.ofox(?: |$)(\S*)")
+async def ofox(request):
+    """ get android device ofox """
+    textx = await request.get_reply_message()
+    device = request.pattern_match.group(1)
+    if device:
+        pass
+    elif textx:
+        device = textx.text.split(" ")[0]
+    else:
+        await request.edit("`Usage: .ofox <codename>`")
+        return
+    url = get(f"https://api.orangefox.download/v3/devices/get?codename={device}")
+    if url.status_code == 404:
+        await request.edit(f"`Couldn't find OrangeFox Recovery for {device}!`\n")
+        return
+    info = json.loads(url.text)
+    if 'url' in info:
+        ed = (
+          f"**Latest OFOX Recovery for {info['full_name']}:**\n"
+          f"[{device}]({info['url']})\n"
+          f"Maintainer: {info['maintainer']['name']}"
+           )
+        await request.edit(ed)
+    else:
+        await request.edit("Mmmm... Some issue occured")
 
 CMD_HELP.update(
     {
@@ -326,6 +352,8 @@ CMD_HELP.update(
 \n\n.specs <brand> <device>\
 \nUsage: Get device specifications info.\
 \n\n.twrp <codename>\
-\nUsage: Get latest twrp download for android device."
+\nUsage: Get latest twrp download for android device.\
+\n\n.ofox <codename>\
+\nUsage: Ger latest ofox recovery download for android device."
     }
 )
