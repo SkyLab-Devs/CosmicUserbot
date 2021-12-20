@@ -250,12 +250,13 @@ async def wiki(wiki_q):
 async def ipinfo(event):
     #Thanks to https://ipinfo.io for this api
     ip = event.pattern_match.group(1)
-    os.system("curl ipinfo.io/{0} --silent > /Fizilion/ip.txt".format(ip))
-    rinfo = open("/Fizilion/ip.txt","r")
-    info = json.load(rinfo)
-    rinfo.close()
-    os.system("rm /Fizilion/ip.txt")
+    #os.system("curl ipinfo.io/{0} --silent > /Fizilion/ip.txt".format(ip))
     
+    if ip:
+        info = json.loads(get(f"https://ipinfo.io/{ip}").text)
+    else:
+        info = json.loads(get(f"https://ipinfo.io/").text)
+
     if "error" in info:
         await event.edit("Invalid IP address")        
     elif "country" in info:
