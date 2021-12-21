@@ -13,6 +13,7 @@ colour
 distro
 dnspython
 deezloader
+duckduckgo_search
 emoji
 gitpython
 glitch_this
