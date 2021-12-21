@@ -23,8 +23,7 @@ from gpytranslate import Translator as tr
 from gtts import gTTS
 from gtts.lang import tts_langs
 from requests import get
-from search_engine_parser.core.engines.google import Search as GoogleSearch
-from search_engine_parser.core.exceptions import NoResultsOrTrafficError
+from duckduckgo_search import ddg
 from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
@@ -159,9 +158,9 @@ async def moni(event):
     c_to_val = round(c_from_val * response["rates"][c_to], 2)
     await event.edit(f"`{c_from_val} {c_from} = {c_to_val} {c_to}`")
 
-@register(outgoing=True, pattern=r"^.google(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^.ddg(?: |$)(.*)")
 async def gsearch(q_event):
-    """For .google command, do a Google search."""
+    """For .ddg command, do a DuckDuckGo search."""
     textx = await q_event.get_reply_message()
     query = q_event.pattern_match.group(1)
 
@@ -171,40 +170,28 @@ async def gsearch(q_event):
         query = textx.text
     else:
         await q_event.edit(
-            "`Pass a query as an argument or reply " "to a message for Google search!`"
+            "`Pass a query as an argument or reply " "to a message for DuckDuckGo search!`"
         )
         return
 
+    msg = ""
     await q_event.edit("`Searching...`")
-
-    search_args = (str(query), 1)
-    googsearch = GoogleSearch()
     try:
-        gresults = await googsearch.async_search(*search_args)
-        msg = ""
-        for i in range(0, 5):
-            try:
-                title = gresults["titles"][i]
-                link = gresults["links"][i]
-                desc = gresults["descriptions"][i]
-                msg += f"{i+1}. [{title}]({link})\n`{desc}`\n\n"
-            except IndexError:
-                break
-        await q_event.edit(
-            "**Search Query:**\n`" + query + "`\n\n**Results:**\n" + msg,
-            link_preview=False,
-        )
-    except NoResultsOrTrafficError as error:
+        rst = ddg(query)
+        i = 1
+        while i <=5:
+            result = rst[i]
+            msg += f"{i}: [{result['title']}]({result['href']})\n"
+            msg += f"{result['body']}\n\n"
+            i += 1
+        await q_event.edit(msg)
         if BOTLOG:
             await q_event.client.send_message(
-                BOTLOG_CHATID, f"`GoogleSearch error: {error}`"
-            )
-        return
-    if BOTLOG:
-        await q_event.client.send_message(
             BOTLOG_CHATID,
             "Google Search query `" + query + "` was executed successfully",
-        )
+            )    
+    except Exception as e:
+        await q_event.edit(f"An error: {e} occured, report it to support group")
 
 @register(outgoing=True, pattern=r"^\.wiki(?: |$)(.*)")
 async def wiki(wiki_q):
@@ -770,9 +757,8 @@ CMD_HELP.update(
         "carbon": ">`.carbon <text> [or reply]`"
         "\nUsage: Beautify your code using carbon.now.sh\n"
         "Use .crblang <text> to set language for your code.",
-        "google": ">`.google [count] <query> [or reply]`"
-        "\nUsage: Does a search on Google."
-        "\nCan specify the number of results needed (default is 3).",
+        "duckduckgo": ">`.ddg <query> [or reply]`"
+        "\nUsage: Does a search on DuckDuckGo.",
         "wiki": ">`.wiki <query> [or reply]`"
         "\nUsage: Does a search on Wikipedia.",
         "ud": ">`.ud <query> [or reply]`"
