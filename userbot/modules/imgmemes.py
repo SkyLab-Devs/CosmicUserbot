@@ -509,15 +509,8 @@ async def phcomment(event):
             text = text
         else:
             return await event.edit("`Give text..`")
-        try:
-            photo = await event.client.download_profile_photo(
-                user.id,
-                str(user.id) + ".png",
-                download_big=False,
-            )
-            uplded = upload_image(photo)
-        except BaseException:
-            uplded = "https://telegra.ph/file/7d110cd944d54f72bcc84.jpg"
+
+        uplded = "https://telegra.ph/file/7d110cd944d54f72bcc84.jpg"
     except BaseException as e:
         await purge()
         return await event.edit(f"`Error: {e}`")
