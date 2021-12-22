@@ -302,30 +302,3 @@ repo = Repo()
 modules = CMD_HELP
 uptime = time.strftime('%X')
 ##
-output = (
-    "` =============================== `\n"
-    f"`Fizilion is Up and Running.... `\n"
-    f"`=============================== `\n"
-    f"•`Telethon       : v{version.__version__} `\n"
-    f"•`Python         : v{python_version()} `\n"
-    f"•`User           : {DEFAULTUSER} `\n"
-    f"•`Running on     : {repo.active_branch.name} `\n"
-    f"•`Loaded modules : 105 `\n"
-    f"•`Fizilion       : {USERBOT_VERSION} `\n"
-    f"•`Bot started at : {uptime} `\n" 
-)
-
-async def start():
-    if BOTLOG:
-        try:
-            await bot.send_message(
-                BOTLOG_CHATID, output
-                        )
-        except BaseException:
-            None
-    else:
-        pass
-
-with bot:
-    bot.loop.run_until_complete(start())
-
