@@ -125,7 +125,7 @@ async def update(event, repo, ups_rem, ac_br):
     return
 
 
-@register(outgoing=True, pattern=r"^.ota(?: |$)(now|deploy)?")
+@register(outgoing=True, pattern=r"^.ota(?: |$)(now|deploy|force)?")
 async def upstream(event):
     "For .update command, check if the bot is up to date, update if specified"
     await event.edit("`Checking for updates, please wait....`")
@@ -176,7 +176,10 @@ async def upstream(event):
 
     changelog = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
 
-    if changelog == "" and force_update is False:
+    if conf == "force":
+        await deploy(event, repo, ups_rem, ac_br, txt)
+        return
+    elif changelog == "" and force_update is False:
         await event.edit(
             f"\n`{UPDATER_ALIAS} is`  **up-to-date**  `with`  **{UPSTREAM_REPO_BRANCH}**\n"
         )
@@ -218,5 +221,7 @@ CMD_HELP.update(
         "\nUsage: Checks if the main userbot repository has any updates and shows a changelog if so."
         "\n\n.ota deploy"
         "\nUsage: Deploy your userbot at heroku, if there are any updates in your userbot repository."
+        "\n\n.ota force"
+        "\nUsage: Forcefully deploy the dyno regardless of updates, useful for testing, updating docker image, etc."
     }
 )
