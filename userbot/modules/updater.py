@@ -199,7 +199,7 @@ async def upstream(event):
             remove("output.txt")
         else:
             await event.edit(changelog_str)
-        return await event.respond('`do ".ota deploy" to update`')
+        return await event.respond('do " `.ota deploy` " to update')
 
     if force_update:
         await event.edit(
