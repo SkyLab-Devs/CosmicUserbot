@@ -7,7 +7,6 @@ bs4
 cowpy
 lottie
 cffi
-coffeehouse
 covid
 colour
 distro
