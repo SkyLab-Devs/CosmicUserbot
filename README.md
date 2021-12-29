@@ -38,7 +38,7 @@
 
 ### Run on your terminal
 ```
-wget https://raw.githubusercontent.com/PrajjuS/ProjectFizilion/demon/terminal_getstring.sh && bash terminal_getstring.sh
+curl -L https://git.io/Jyiwj > session_gen.sh && bash session_gen.sh
 ```
 
 ## How To Host?
