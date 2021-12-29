@@ -20,25 +20,11 @@ from emoji import get_emoji_regexp
 from google_trans_new import LANGUAGES, google_translator
 from googletrans import Translator
 from gpytranslate import Translator as tr
-from gtts import gTTS
-from gtts.lang import tts_langs
 from requests import get
 from duckduckgo_search import ddg
 from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
-from yt_dlp import YoutubeDL
-from yt_dlp.utils import (
-    ContentTooShortError,
-    DownloadError,
-    ExtractorError,
-    GeoRestrictedError,
-    MaxDownloadsReached,
-    PostProcessingError,
-    UnavailableVideoError,
-    XAttrMetadataError,
-)
-from youtube_search import YoutubeSearch
 
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
@@ -316,51 +302,6 @@ async def urban_dict(event):
         return await event.edit(result)
 
 
-@register(outgoing=True, pattern=r"^\.tts(?: |$)([\s\S]*)")
-async def text_to_speech(query):
-    """ For .tts command, a wrapper for Google Text-to-Speech. """
-
-    if query.is_reply and not query.pattern_match.group(1):
-        message = await query.get_reply_message()
-        message = str(message.message)
-    else:
-        message = str(query.pattern_match.group(1))
-
-    if not message:
-        return await query.edit(
-            "`Give a text or reply to a message for Text-to-Speech!`"
-        )
-
-    await query.edit("`Processing...`")
-
-    try:
-        gTTS(message, lang=TTS_LANG)
-    except AssertionError:
-        return await query.edit(
-            "The text is empty.\n"
-            "Nothing left to speak after pre-precessing, tokenizing and cleaning."
-        )
-    except ValueError:
-        return await query.edit("Language is not supported.")
-    except RuntimeError:
-        return await query.edit("Error loading the languages dictionary.")
-    tts = gTTS(message, lang=TTS_LANG)
-    tts.save("k.mp3")
-    with open("k.mp3", "rb") as audio:
-        linelist = list(audio)
-        linecount = len(linelist)
-    if linecount == 1:
-        tts = gTTS(message, lang=TTS_LANG)
-        tts.save("k.mp3")
-    with open("k.mp3", "r"):
-        await query.client.send_file(query.chat_id, "k.mp3", voice_note=True)
-        os.remove("k.mp3")
-        if BOTLOG:
-            await query.client.send_message(
-                BOTLOG_CHATID, "Text to Speech executed successfully !"
-            )
-    await query.delete()
-
 
 # kanged from Blank-x ;---;
 @register(outgoing=True, pattern=r"^\.imdb (.*)")
@@ -578,169 +519,6 @@ async def yt_search(event):
     await event.edit(output, link_preview=False)
 
 
-
-@register(outgoing=True, pattern=r"^\.r(a|v)(?: |$)(.*)")
-async def download_video(v_url):
-    """For media downloader command, download media from YouTube and many other sites."""
-
-    if v_url.is_reply and not v_url.pattern_match.group(2):
-        url = await v_url.get_reply_message()
-        url = str(url.text)
-    else:
-        url = str(v_url.pattern_match.group(2))
-
-    if not url:
-        return await v_url.edit("**Reply to a message with a URL or pass a URL!**")
-
-    type = v_url.pattern_match.group(1).lower()
-    await v_url.edit("**Preparing to download...**")
-
-    if type == "a":
-        opts = {
-            "format": "bestaudio",
-            "addmetadata": True,
-            "key": "FFmpegMetadata",
-            "writethumbnail": True,
-            "prefer_ffmpeg": True,
-            "geo_bypass": True,
-            "nocheckcertificate": True,
-            "postprocessors": [
-                {
-                    "key": "FFmpegExtractAudio",
-                    "preferredcodec": "mp3",
-                    "preferredquality": "320",
-                }
-            ],
-            "outtmpl": "%(id)s.mp3",
-            "quiet": True,
-            "logtostderr": False,
-        }
-        video = False
-        song = True
-
-    elif type == "v":
-        opts = {
-            "format": "best",
-            "addmetadata": True,
-            "key": "FFmpegMetadata",
-            "prefer_ffmpeg": True,
-            "geo_bypass": True,
-            "nocheckcertificate": True,
-            "postprocessors": [
-                {"key": "FFmpegVideoConvertor", "preferedformat": "mp4"}
-            ],
-            "outtmpl": "%(id)s.mp4",
-            "logtostderr": False,
-            "quiet": True,
-        }
-        song = False
-        video = True
-
-    try:
-        await v_url.edit("**Fetching data, please wait..**")
-        with YoutubeDL(opts) as rip:
-            rip_data = rip.extract_info(url)
-    except DownloadError as DE:
-        return await v_url.edit(f"`{str(DE)}`")
-    except ContentTooShortError:
-        return await v_url.edit("**The download content was too short.**")
-    except GeoRestrictedError:
-        return await v_url.edit(
-            "**Video is not available from your geographic location "
-            "due to geographic restrictions imposed by a website.**"
-        )
-    except MaxDownloadsReached:
-        return await v_url.edit("**Max-downloads limit has been reached.**")
-    except PostProcessingError:
-        return await v_url.edit("**There was an error during post processing.**")
-    except UnavailableVideoError:
-        return await v_url.edit("**Media is not available in the requested format.**")
-    except XAttrMetadataError as XAME:
-        return await v_url.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
-    except ExtractorError:
-        return await v_url.edit("**There was an error during info extraction.**")
-    except Exception as e:
-        return await v_url.edit(f"{str(type(e)): {str(e)}}")
-    c_time = time.time()
-    if song:
-        await v_url.edit(f"**Preparing to upload song:**\n**{rip_data['title']}**")
-        with open(rip_data["id"] + ".mp3", "rb") as f:
-            result = await upload_file(
-                client=v_url.client,
-                file=f,
-                name=f"{rip_data['id']}.mp3",
-                progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                    progress(
-                        d,
-                        t,
-                        v_url,
-                        c_time,
-                        "YouTube-DL - Upload",
-                        f"{rip_data['title']}.mp3",
-                    )
-                ),
-            )
-        img_extensions = ["jpg", "jpeg", "webp"]
-        img_filenames = [
-            fn_img
-            for fn_img in os.listdir()
-            if any(fn_img.endswith(ext_img) for ext_img in img_extensions)
-        ]
-        thumb_image = img_filenames[0]
-        await v_url.client.send_file(
-            v_url.chat_id,
-            result,
-            supports_streaming=True,
-            attributes=[
-                DocumentAttributeAudio(
-                    duration=int(rip_data["duration"]),
-                    title=str(rip_data["title"]),
-                    performer=str(rip_data["uploader"]),
-                )
-            ],
-            thumb=thumb_image,
-        )
-        os.remove(thumb_image)
-        os.remove(f"{rip_data['id']}.mp3")
-        await v_url.delete()
-    elif video:
-        await v_url.edit(f"**Preparing to upload video:**\n**{rip_data['title']}**")
-        thumb_image = await get_video_thumb(rip_data["id"] + ".mp4", rip_data["id"] + "_" + "thumb.png")
-        with open(rip_data["id"] + ".mp4", "rb") as f:
-            result = await upload_file(
-                client=v_url.client,
-                file=f,
-                name=f"{rip_data['title']}.mp4",
-                progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                    progress(
-                        d,
-                        t,
-                        v_url,
-                        c_time,
-                        "YouTube-DL - Upload",
-                        f"{rip_data['title']}.mp4",
-                    )
-                ),
-            )
-        await v_url.client.send_file(
-            v_url.chat_id,
-            result,
-            thumb=thumb_image,
-            attributes=[
-                DocumentAttributeVideo(
-                    duration=rip_data["duration"],
-                    w=rip_data["width"],
-                    h=rip_data["height"],
-                    supports_streaming=True,
-                )
-            ],
-            caption=rip_data["title"],
-        )
-        os.remove(f"{rip_data['id']}.mp4")
-        os.remove(thumb_image)
-        await v_url.delete()
-
-
 def deEmojify(inputString):
     """Remove emojis and other non-safe characters from string"""
     return get_emoji_regexp().sub("", inputString)
@@ -769,12 +547,6 @@ CMD_HELP.update(
         "trt": ">`.trt <text> [or reply]`"
         "\nUsage: Translates text to the language which is set."
         "\nUse >`.lang trt <language code>` to set language for trt. (Default is English),  you can also set environment variable for this, TRT_LANG and then the language code",
-        "yt": ">`.yt [count] <query> [or reply]`"
-        "\nUsage: Does a YouTube search."
-        "\nCan specify the number of results needed (default is 3).",
         "imdb": ">`.imdb <movie-name>`"
         "\nUsage: Shows movie info and other stuff.",
-        "rip": ">`.ra <url> [or reply] or .rv <url> [or reply]`"
-        "\nUsage: Download videos and songs from YouTube "
-        "(and [many other sites](https://ytdl-org.github.io/youtube-dl/supportedsites.html)).",
     })
