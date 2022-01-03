@@ -19,8 +19,11 @@ async def whereAmIAdminIn(e):
     diags = e.client.iter_dialogs()
     txt = f"<b>{stat.capitalize()}</b> in \n"
     async for c in diags:
-        if c.is_group and getattr(c.entity, ChatStatus[stat].value):
-            text.append(f"<br>- {getDialogLink(c)}")
+        try:
+            if c.is_group and getattr(c.entity, ChatStatus[stat].value):
+                text.append(f"<br>- {getDialogLink(c)}")
+        except AttributeError:
+            None
     if len(text) > 20: # avoid sending a long message
         u_fname = f"List of chats where {(await e.client.get_me()).first_name} is {e.pattern_match.group(1).capitalize()} in:"
         tlink = "".join(iter(text))
