@@ -1,6 +1,6 @@
-#Modified by @arshsisodiya
-#thanks to @Zero_cool7870
-#https://github.com/arshsisodiya
+# Copyright (C) 2019 The Raphielscape Company LLC.; Licensed under the Raphielscape Public License, Version 1.d (the "License"); you may not use this file except in compliance with the License.#Modified by @arshsisodiya #thanks to @Zero_cool7870 #https://github.com/arshsisodiya
+
+""" a module for downloading files from channel. """
 
 import os
 import subprocess

@@ -1,10 +1,5 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Thanks to @kandnub, for this awesome module !!
-#
-# Licensed under the Raphielscape Public License, Version 1.d (the "License");
-# you may not use this file except in compliance with the License.
-#
+# Copyright (C) 2019 The Raphielscape Company LLC.; Licensed under the Raphielscape Public License, Version 1.d (the "License"); you may not use this file except in compliance with the License.; Thanks to @kandnub, for this awesome module !!;
+
 """ Userbot module for reverse searching stickers and images on Google """
 
 import io

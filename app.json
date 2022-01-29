@@ -148,22 +148,6 @@
       "description": "Enter the Google Drive authentication data, as a JSON structure.",
       "required": false
     },
-    "LASTFM_API": {
-      "description": "API Key for Last.FM module. [Get one from - https://www.last.fm/api/account/create]",
-      "required": false
-    },
-    "LASTFM_SECRET": {
-      "description": "SECRET Key for Last.FM module. [Get one from - https://www.last.fm/api/account/create]",
-      "required": false
-    },
-    "LASTFM_USERNAME": {
-      "description": "Last.FM Username",
-      "required": false
-    },
-    "LASTFM_PASSWORD": {
-      "description": "Last.FM Password",
-      "required": false
-    },
     "BIO_PREFIX": {
       "description": "Prefix for Last.FM Module Bio.",
       "required": false 

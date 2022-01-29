@@ -1,9 +1,6 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.d (the "License");
-# you may not use this file except in compliance with the License.
-#
-""" Userbot module containing commands for interacting with dogbin(https://del.dog)"""
+# Copyright (C) 2019 The Raphielscape Company LLC.; Licensed under the Raphielscape Public License, Version 1.d (the "License"); you may not use this file except in compliance with the License.
+
+""" Userbot module containing commands for interacting with dogbin(https://del.dog). """
 
 import os
 

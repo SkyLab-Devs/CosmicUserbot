@@ -1,14 +1,10 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.d (the "License");
-# you may not use this file except in compliance with the License.
-#
+# Copyright (C) 2019 The Raphielscape Company LLC.; Licensed under the Raphielscape Public License, Version 1.d (the "License"); you may not use this file except in compliance with the License.
+
+""" a module for finding lyrics. """
 
 import os
-
 import lyricsgenius
 from pylast import User
-
 from userbot import CMD_HELP, GENIUS, LASTFM_USERNAME, lastfm
 from userbot.events import register
 

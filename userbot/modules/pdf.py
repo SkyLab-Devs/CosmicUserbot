@@ -1,8 +1,6 @@
-#Copyright @arshsisodiya
-#https://github.com/arshsisodiya
-#https://twitter.com/arshsisodiya
+# Copyright (C) 2019 The Raphielscape Company LLC.; Licensed under the Raphielscape Public License, Version 1.d (the "License"); you may not use this file except in compliance with the License.;#Copyright @arshsisodiya
 
-#Created by arshsisodiya for ProjectHelios
+""" a module for converting images to pdf. """
 
 import asyncio
 from asyncio.exceptions import TimeoutError

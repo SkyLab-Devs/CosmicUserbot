@@ -1,4 +1,7 @@
-# module to get a list of chats where the user is an admin or the creator of the group
+# Copyright (C) 2019 The Raphielscape Company LLC.; Licensed under the Raphielscape Public License, Version 1.d (the "License"); you may not use this file except in compliance with the License.
+
+""" module to get a list of chats where the user is an admin or the creator of the group. """
+
 from typing import List
 from enum import Enum
 

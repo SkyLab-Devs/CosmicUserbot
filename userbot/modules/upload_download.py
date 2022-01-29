@@ -1,13 +1,6 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-# The entire source code is OSSRPL except
-# 'download, uploadir, uploadas, upload' which is MPL
-# License: MPL and OSSRPL
-""" Userbot module which contains everything related to
-     downloading/uploading from/to the server. """
+# Copyright (C) 2019 The Raphielscape Company LLC.; Licensed under the Raphielscape Public License, Version 1.d (the "License"); you may not use this file except in compliance with the License.; The entire source code is OSSRPL except; 'download, uploadir, uploadas, upload' which is MPL; License: MPL and OSSRPL
+
+""" Userbot module which contains everything related to downloading/uploading from/to the server. """
 
 import asyncio
 import math

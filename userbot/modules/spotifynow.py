@@ -1,11 +1,6 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.d (the "License");
-# you may not use this file except in compliance with the License.
-#
-# The entire source code is OSSRPL except 'makeqr and getqr' which is MPL
-# License: MPL and OSSRPL
-# Ported by Aidil Aryanto
+# Copyright (C) 2019 The Raphielscape Company LLC.; Licensed under the Raphielscape Public License, Version 1.d (the "License"); you may not use this file except in compliance with the License.; Ported by Aidil Aryanto ;this module doesn't relate to spotify inc in any way ; 'spotify' is Copyrighted term of spotify.inc
+
+""" shows currently playing spotify songs """
 
 import os
 from asyncio.exceptions import TimeoutError

@@ -1,4 +1,6 @@
-# Refactored and Modified by @PrajjuS
+# Copyright (C) 2019 The Raphielscape Company LLC.; Licensed under the Raphielscape Public License, Version 1.d (the "License"); you may not use this file except in compliance with the License.; Refactored and Modified by @PrajjuS
+
+""" meme module for userbot."""
 
 import asyncio
 import os

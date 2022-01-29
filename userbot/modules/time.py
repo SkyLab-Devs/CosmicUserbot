@@ -1,17 +1,11 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.d (the "License");
-# you may not use this file except in compliance with the License.
-#
-""" Userbot module for getting the date
-    and time of any country or the userbot server.  """
+# Copyright (C) 2019 The Raphielscape Company LLC.; Licensed under the Raphielscape Public License, Version 1.d (the "License"); you may not use this file except in compliance with the License.
+
+""" Userbot module for getting the date and time of any country or the userbot server. """
 
 from datetime import datetime as dt
-
 from pytz import country_names as c_n
 from pytz import country_timezones as c_tz
 from pytz import timezone as tz
-
 from userbot import CMD_HELP, COUNTRY, TZ_NUMBER
 from userbot.events import register
 
