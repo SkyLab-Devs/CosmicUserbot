@@ -1,12 +1,10 @@
 aiohttp[speedups]
-aria2p
 asyncurban
 bs4
 cowpy
 lottie
 covid
 colour
-distro
 duckduckgo_search
 emoji
 gitpython
