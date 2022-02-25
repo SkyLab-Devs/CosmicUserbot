@@ -6,6 +6,7 @@ lottie
 covid
 colour
 duckduckgo_search
+distro
 emoji
 gitpython
 glitch_this
