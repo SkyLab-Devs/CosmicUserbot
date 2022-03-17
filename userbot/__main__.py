@@ -24,17 +24,17 @@ except PhoneNumberInvalidError:
 for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
-LOGS.info(f"You are running Project Fizilion on {repo_lenk}")
+LOGS.info(f"You are running Cosmic Userbot on {repo_lenk}")
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 output = (
     "` =============================== `\n"
-    f"`Fizilion is Up and Running.... `\n"
+    f"`Cosmic UB is Up and Running.... `\n"
     f"`=============================== `\n"
     f"•`Telethon       : v{version.__version__} `\n"
     f"•`Python         : v{python_version()} `\n"
     f"•`User           : {DEFAULTUSER} `\n"
-    f"•`Fizilion       : {USERBOT_VERSION} `\n"
+    f"•`Cosmic       : {USERBOT_VERSION} `\n"
 )
 
 async def start():
@@ -51,7 +51,7 @@ bot.loop.run_until_complete(start())
 
 LOGS.info(
     "Congratulations, your userbot is now running !! Test it by typing .alive / .on in any chat."
-    "If you need assistance, head to https://t.me/ProjectFizilionChat")
+    "If you need assistance, head to https://t.me/CosmicUserbotChat")
 if HEROKU_APP_NAME is not None and HEROKU_API_KEY is not None:
     print("HEROKU detected, sleeping for 5 minutes to prevent String Session Error")
     LOGS.info("HEROKU detected, sleeping for 5 minutes to prevent String Session Error")

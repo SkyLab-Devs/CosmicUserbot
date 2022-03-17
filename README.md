@@ -1,16 +1,14 @@
 <p align="center">
-   <a href="https://github.com/FrosT2k5/ProjectFizilion"><img src="https://github.com/FrosT2k5/ProjectFizilion/raw/dragon/resources/IMG_20201109_130207_262.jpg" alt="Fizi Logo" width=600px></a>
+   <a href="https://github.com/SkyLab-Devs/CosmicUserbot"><img src="https://github.com/SkyLab-Devs/CosmicUserbot/raw/starfire/resources/cosmic.jpg" alt="Fizi Logo" width=600px></a>
    <br>
    <br>
 </p>
 
-# Project Fizilion
+# Cosmic Userbot
 
-[![Build](https://img.shields.io/github/workflow/status/PrajjuS/ProjectFizilion/FailedChecker?style=for-the-badge)](https://github.com/FrosT2k5/ProjectFizilion/actions "build")
+[![Build](https://img.shields.io/github/workflow/status/SkyLab-Devs/CosmicUserbot/FailedChecker?style=for-the-badge)](https://github.com/SkyLab-Devs/CosmicUserbot/actions "build")
 
 ![Spec](https://img.shields.io/badge/Made%20with-LOVE-black?style=for-the-badge)
-
-![Docker_Pulls](https://img.shields.io/docker/pulls/frost2k5/dragonheart?style=for-the-badge)
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
@@ -34,7 +32,7 @@
 ## Generate String Session
 
 ### Run on repl.it
-[![Run repl.it](https://img.shields.io/badge/run-string__session.py-blue?style=flat-square&logo=repl.it)](https://session.uraniumcore.repl.run)
+[![Run repl.it](https://img.shields.io/badge/run-string__session.py-blue?style=flat-square&logo=repl.it)](https://session.frost2k5.repl.run)
 
 ### Run on your terminal
 ```
@@ -46,11 +44,11 @@ curl -L https://git.io/Jyiwj > session_gen.sh && bash session_gen.sh
 ### Deploy on Heroku
 Make sure you have an account of heroku and follow all the steps required.
 
-<p align="left"><a href="https://heroku.com/deploy?template=https://github.com/Fizi-Peeps/ProjectFizilion/tree/demon"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" /></a></p>
+<p align="left"><a href="https://heroku.com/deploy?template=https://github.com/SkyLab-Devs/CosmicUserbot/tree/demon"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" /></a></p>
 
 ## Groups and Support
 
-For discussion, bug reporting, and help, you can join [Project Fizilion](https://t.me/ProjectFizilionChat) support group.
+For discussion, bug reporting, and help, you can join [Cosmic Userbot](https://t.me/CosmicUserbotChat) support group.
 For further guide you can read this [Guide](https://frost2k5.games/ProjectFizilion).
 
 
@@ -66,7 +64,7 @@ Thanks:
 * [Mkaraniya](https://github.com/mkaraniya) & [Dev73](https://github.com/Devp73) - OpenUserBot
 * [MoveAngel](https://github.com/MoveAngel) - One4U
 
-and many more people who aren't mentioned here, but may be found in [Contributors](https://github.com/FrosT2k5/ProjectFizilion/graphs/contributors).
+and many more people who aren't mentioned here, but may be found in [Contributors](https://github.com/SkyLab-Devs/CosmicUserbot/graphs/contributors).
 
 ## License
 

@@ -182,7 +182,7 @@ async def amireallyalive(alive):
     uptime = await get_readable_time((time.time() - StartTime))
     DEFAULT_MESSAGE = (
         f"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n"
-        f"  **Fizilion** is up and running...\n"
+        f"  **Cosmic UB** is up and running...\n"
         f">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n"
         f"• `Owner          : {DEFAULTUSER} `\n"
         f"• `Loaded modules : {len(modules)} `\n"

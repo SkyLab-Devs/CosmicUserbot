@@ -50,7 +50,7 @@ if version_info[0] < 3 or version_info[1] < 8:
     quit(1)
 
 repo_lenk = Repo().remotes.origin.url.split('.git')[0].split('.com/')[1] if Repo().remotes.origin.url else "null"
-LOGS.info(f"Starting Project Fizilion on {repo_lenk}")
+LOGS.info(f"Starting Cosmic Userbot on {repo_lenk}")
 
 # Check if the config was edited by using the already used variable.
 # Basically, its the 'virginity check' for the config file ;)
@@ -99,12 +99,10 @@ GITHUB_ACCESS_TOKEN = os.environ.get("GITHUB_ACCESS_TOKEN") or None
 
 # Custom (forked) repo URL and BRANCH for updater.
 UPSTREAM_REPO_URL = (os.environ.get("UPSTREAM_REPO_URL")
-                     or "https://github.com/Fizi-Peeps/ProjectFizilion.git")
-UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH") or "demon"
+                     or "https://github.com/SkyLab-Devs/CosmicUserbot.git")
+UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH") or "starfire"
 ###
-FUPSTREAM_REPO_URL = (os.environ.get("FPSTREAM_REPO_URL")
-                     or "https://github.com/Elytra8/ProjectFizilion.git")
-FUPSTREAM_REPO_BRANCH = os.environ.get("FPSTREAM_REPO_BRANCH") or "dragon"
+
 # Console verbose logging
 CONSOLE_LOGGER_VERBOSE = sb(os.environ.get(
     "CONSOLE_LOGGER_VERBOSE") or "False")
@@ -157,7 +155,7 @@ TZ_NUMBER = os.environ.get("TZ_NUMBER") or 1
 USERBOT_VERSION = "4.0"
 
 # User Terminal alias
-USER_TERM_ALIAS = os.environ.get("USER_TERM_ALIAS") or "dem0n"
+USER_TERM_ALIAS = os.environ.get("USER_TERM_ALIAS") or "starfire"
 
 # Updater alias
 UPDATER_ALIAS = os.environ.get("UPDATER_ALIAS") or "Fizilion"

@@ -1,7 +1,7 @@
 {
-  "name": "Project Fizilion",
+  "name": "Cosmic Userbot",
   "description": "A modular Telegram userbot running on Python 3.8+ with an sqlalchemy database.",
-  "logo": "https://github.com/PrajjUS/ProjectFizilion/raw/demon/resources/Fizilion.png",
+  "logo": "https://github.com/SkyLab-Devs/CosmicUserbot/raw/demon/resources/Fizilion.png",
   "keywords": [
     "telegram",
     "userbot",
@@ -9,9 +9,9 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/PrajjuS/ProjectFizilion",
-  "website": "https://t.me/PrajjuS",
-  "success_url": "https://t.me/ProjectFizilion",
+  "repository": "https://github.com/SkyLab-Devs/CosmicUserbot",
+  "website": "https://t.me/CosmicUserbotChat",
+  "success_url": "https://t.me/CosmicUserbotChat",
   "stack": "container",
   "env": {
     "API_KEY": {

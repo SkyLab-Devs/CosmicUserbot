@@ -68,15 +68,15 @@ async def killdabot(reboot):
 async def reedme(event):
     await event.edit(
         "Here's something for you to read:\n"
-        "\n[Fizilions README.md file](https://github.com/FrosT2k5/ProjectFizilion/blob/demon/README.md)"
+        "\n[Cosmic UB's' README.md file](https://github.com/SkyLab-Devs/CosmicUserbot/blob/demon/README.md)"
 )
 
 
 @register(outgoing=True, pattern="^.guide$")
 async def guidee(event):
     await event.edit(
-        "*Guide on Deploying Fizilion*\n"
-        "•[Reading Guide](https://elytra8.github.io/ProjectFizilion)\n"
+        "*Guide on Deploying CosmicUserbot*\n"
+        "•[Reading Guide](https://frost2k5.github.io/ProjectFizilion)\n"
         "•[Yt Guide](https://youtu.be/tJzmrTq09tA)\n"
 )
 
@@ -100,19 +100,19 @@ async def repeat(rep):
 async def repo_is_here(wannasee):
     """ For .repo command, just returns the repo URL. """
     await wannasee.edit(
-        "[Click here](https://github.com/SkyLab-Devs/ProjectFizilion) to open Fizilion's GitHub Repo."
+        "[Click here](https://github.com/SkyLab-Devs/CosmicUserbot) to open Cosmic UB's GitHub Repo."
     )
 
 @register(outgoing=True, pattern="^.deploy$")
 async def repo_is_here(wannasee):
     """ For .deploy command, just returns the heroku deploying URL. """
     await wannasee.edit(
-        "[Click here](https://heroku.com/deploy?template=https://github.com/FrosT2k5/ProjectFizilion/tree/demon) to deploy Fizilion Userbot on Heroku."
+        "[Click here](https://heroku.com/deploy?template=https://github.com/SkyLab-Devs/CosmicUserbot/tree/starfire) to deploy Cosmic Userbot on Heroku."
     )
 
 @register(outgoing=True, pattern="^.support$")
 async def grup(sapot):
-    await sapot.edit("**Channel:** @TheProjectFizilion\n**Support Group:** @ProjectFizilionChat")
+    await sapot.edit("**Channel:** @CosmicUserbot\n**Support Group:** @CosmicUserbotChat")
     
 @register(outgoing=True, pattern="^.raw$")
 async def raw(rawtext):
