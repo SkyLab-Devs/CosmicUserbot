@@ -139,7 +139,7 @@ ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT") or "False")
 ALIVE_NAME = os.environ.get("ALIVE_NAME") or None
 
 # Default .alive logo
-ALIVE_LOGO = str(os.environ.get("ALIVE_LOGO") or "https://github.com/Fizi-Peeps/ProjectFizilion/raw/dragon/resources/glitch.gif")
+ALIVE_LOGO = str(os.environ.get("ALIVE_LOGO") or "https://github.com/SkyLab-Devs/CosmicUserbot/raw/starfire/resources/cosmic.jpg")
 
 # Custom Alive Message
 ALIVE_MESSAGE = str(os.environ.get("ALIVE_MESSAGE") or "")
@@ -158,7 +158,7 @@ USERBOT_VERSION = "4.0"
 USER_TERM_ALIAS = os.environ.get("USER_TERM_ALIAS") or "starfire"
 
 # Updater alias
-UPDATER_ALIAS = os.environ.get("UPDATER_ALIAS") or "Fizilion"
+UPDATER_ALIAS = os.environ.get("UPDATER_ALIAS") or "Cosmic Userbot"
 
 # Zipfile module
 ZIP_DOWNLOAD_DIRECTORY = os.environ.get("ZIP_DOWNLOAD_DIRECTORY") or "./zips"

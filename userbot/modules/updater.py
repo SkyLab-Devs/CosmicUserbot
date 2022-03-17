@@ -89,7 +89,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
 
         if BOTLOG:
             await event.client.send_message(
-                BOTLOG_CHATID, "#UPDATE \n" "Your Fizilion was successfully updated"
+                BOTLOG_CHATID, "#UPDATE \n" "Your Cosmic UB was successfully updated"
             )
 
     else:

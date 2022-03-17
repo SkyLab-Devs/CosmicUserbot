@@ -151,7 +151,7 @@ CMD_HELP.update(
 ".readme"
 "\nUsage: Provide links to setup the userbot and it's modules\nAnd .support for support group\n\n"
 ".guide"
-"\nUsage: Provides Full guide to setup Fizilion Userbot.\n\n"
+"\nUsage: Provides Full guide to setup Cosmic Userbot.\n\n"
 ".repeat <no.> <text>"
 "\nUsage: Repeats the text for a number of times. Don't confuse this with spam tho.\n\n"
 ".restart"
@@ -159,6 +159,6 @@ CMD_HELP.update(
 ".raw"
 "\nUsage: Get detailed JSON-like formatted data about replied message."
 ".deploy"
-"\nUsage: Get link to deploy Fizilion Userbot on Heroku."
+"\nUsage: Get link to deploy Cosmic Userbot on Heroku."
      }
 )
