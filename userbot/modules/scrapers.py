@@ -32,7 +32,7 @@ from userbot.utils.FastTelethon import upload_file
 CARBONLANG = "auto"
 TTS_LANG = "en"
 TRT_LANG = os.environ.get("TRT_LANG") or "en"
-TEMP_DOWNLOAD_DIRECTORY = "/Fizilion/.bin/"
+TEMP_DOWNLOAD_DIRECTORY = "/cosmic/.bin/"
 
 
 @register(outgoing=True, pattern=r"^\.crblang (.*)")
