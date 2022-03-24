@@ -114,10 +114,18 @@ async def img_sampler(event):
         scraper.scrape(query,1,out)
         await asyncio.sleep(4)
         files = glob.glob("/tmp/out/images/*.jpg")
-        await event.client.send_file(
-            await event.client.get_input_entity(event.chat_id), files
-                )
-        await event.delete()
+        i = 0
+        for file in files:
+            if i == 5:
+                break
+            try:
+                await event.client.send_file(
+                     await event.client.get_input_entity(event.chat_id), file
+                         )
+                await event.delete()
+            except:
+                None
+            i += 1
         os.system("rm -rf /tmp/out/images")
 
 @register(outgoing=True, pattern=r"^\.currency ([\d\.]+) ([a-zA-Z]+) ([a-zA-Z]+)")
