@@ -84,7 +84,11 @@ if BOTLOG:
     LOGSPAMMER = sb(os.environ.get("LOGSPAMMER") or "False")
 else:
     LOGSPAMMER = False
-    
+
+# Userbot tags logging feature switch.
+LOG_TAGGING = sb(os.environ.get("LOG_TAGGING") or "False")
+LOG_TAGGING_CHATID = int(os.environ.get("LOG_TAGGING_CHATID") or 0)
+
 # Bleep Blop, this is a bot ;)
 PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN") or "False")
 
