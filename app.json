@@ -201,6 +201,14 @@
     "LOGSPAMMER": {
       "description": "Set this to True in case you want the error logs to be stored in the userbot log group, instead of spitting out the file in the current chat, requires a valid BOTLOG_CHATID to be set.",
       "value": "False"
+    },
+    "LOG_TAGGING": {
+      "description": "Set this to True in case you want the to log messages in which you are mentioned in bot log group. It requires a valid LOG_TAGGING_CHATID to be set.",
+      "value": "False"
+    },
+    "LOG_TAGGING_CHATID": {
+      "description": "ChatID of the group where tags are logged. Set it to '0' if LOG_TAGGING = False.",
+      "value": "0"
     }
   },
   "addons": [
