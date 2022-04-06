@@ -100,7 +100,7 @@ GITHUB_ACCESS_TOKEN = os.environ.get("GITHUB_ACCESS_TOKEN") or None
 # Custom (forked) repo URL and BRANCH for updater.
 UPSTREAM_REPO_URL = (os.environ.get("UPSTREAM_REPO_URL")
                      or "https://github.com/SkyLab-Devs/CosmicUserbot.git")
-UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH") or "starfire"
+UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH") or "stagging"
 ###
 
 # Console verbose logging
@@ -155,7 +155,7 @@ TZ_NUMBER = os.environ.get("TZ_NUMBER") or 1
 USERBOT_VERSION = "4.0"
 
 # User Terminal alias
-USER_TERM_ALIAS = os.environ.get("USER_TERM_ALIAS") or "starfire"
+USER_TERM_ALIAS = os.environ.get("USER_TERM_ALIAS") or "stagging"
 
 # Updater alias
 UPDATER_ALIAS = os.environ.get("UPDATER_ALIAS") or "Cosmic Userbot"
