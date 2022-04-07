@@ -25,6 +25,8 @@ DEF_UNAPPROVED_MSG = (
     "Please wait for my Master to read your PMs.\n"
     "Have patience, if you spam I will use my cosmic powers to block you!\n\n\n"
     "*This PM is Powered by Cosmic UB")
+
+DEF_BLOCKED_MSG = '{} was just another retarded nibba'
 # =================================================================
 
 
@@ -51,11 +53,7 @@ async def permitpm(event):
 
         # Use user custom unapproved message
         getmsg = gvarstatus("unapproved_msg")
-        if getmsg is not None:
-            UNAPPROVED_MSG = getmsg
-        else:
-            UNAPPROVED_MSG = DEF_UNAPPROVED_MSG
-
+        UNAPPROVED_MSG = getmsg if getmsg is not None else DEF_UNAPPROVED_MSG
         # This part basically is a sanity check
         # If the message that sent before is Unapproved Message
         # then stop sending it again to prevent FloodHit
@@ -105,14 +103,17 @@ async def permitpm(event):
                 if BOTLOG:
                     name = await event.client.get_entity(event.chat_id)
                     name0 = str(name.first_name)
+                    blockMsg = gvarstatus("pm_block_msg")
+                    if not blockMsg:
+                        blockMsg = (
+                            DEF_BLOCKED_MSG.format(
+                                f'[{name0}](tg://user?id={event.chat_id})'
+                            ),
+                        )
+
                     await event.client.send_message(
-                        BOTLOG_CHATID,
-                        "["
-                        + name0
-                        + "](tg://user?id="
-                        + str(event.chat_id)
-                        + ")"
-                        + " was just another retarded nibba",
+                            BOTLOG_CHATID,
+                            blockMsg
                     )
 
 
@@ -136,11 +137,7 @@ async def auto_accept(event):
 
         # Use user custom unapproved message
         get_message = gvarstatus("unapproved_msg")
-        if get_message is not None:
-            UNAPPROVED_MSG = get_message
-        else:
-            UNAPPROVED_MSG = DEF_UNAPPROVED_MSG
-
+        UNAPPROVED_MSG = get_message if get_message is not None else DEF_UNAPPROVED_MSG
         chat = await event.get_chat()
         if isinstance(chat, User):
             if is_approved(event.chat_id) or chat.bot:
@@ -215,11 +212,7 @@ async def approvepm(apprvpm):
 
     # Get user custom msg
     getmsg = gvarstatus("unapproved_msg")
-    if getmsg is not None:
-        UNAPPROVED_MSG = getmsg
-    else:
-        UNAPPROVED_MSG = DEF_UNAPPROVED_MSG
-
+    UNAPPROVED_MSG = getmsg if getmsg is not None else DEF_UNAPPROVED_MSG
     async for message in apprvpm.client.iter_messages(
         apprvpm.chat_id, from_user="me", search=UNAPPROVED_MSG
     ):
@@ -297,9 +290,9 @@ async def blockpm(block):
 
     if BOTLOG:
         await block.client.send_message(
-            BOTLOG_CHATID,
-            "#BLOCKED\n" + "User: " + f"[{name0}](tg://user?id={uid})",
-        )
+                BOTLOG_CHATID,
+                "#BLOCKED\n" + "User: " + f"[{name0}](tg://user?id={uid})",
+                )
 
 
 @register(outgoing=True, pattern=r"^.unblock$")
@@ -312,14 +305,14 @@ async def unblockpm(unblock):
         await unblock.client(UnblockRequest(replied_user.id))
         await unblock.edit("`You have been unblocked.`")
 
-    if BOTLOG:
-        await unblock.client.send_message(
-            BOTLOG_CHATID,
-            f"[{name0}](tg://user?id={replied_user.id})" " was unblocc'd!.",
-        )
+        if BOTLOG:
+            await unblock.client.send_message(
+                    BOTLOG_CHATID,
+                    f"[{name0}](tg://user?id={replied_user.id})" " was unblocc'd!.",
+            )
 
 
-@register(outgoing=True, pattern=r"^.(set|get|reset) pm_msg(?: |$)(\w*)")
+@register(outgoing=True, pattern=r"^.(set|get|reset) (pm_msg|pm_block_msg)(?: |$)(\w*)")
 async def add_pmsg(cust_msg):
     """ Set your own Unapproved message. """
     if not PM_AUTO_BAN:
@@ -332,50 +325,51 @@ async def add_pmsg(cust_msg):
 
     await cust_msg.edit("Processing...")
     conf = cust_msg.pattern_match.group(1)
+    which = cust_msg.pattern_match.group(2)
 
     custom_message = sql.gvarstatus("unapproved_msg")
 
+    change = "unapproved_msg" if which == "pm_msg" else "pm_block_msg"
     if conf.lower() == "set":
         message = await cust_msg.get_reply_message()
         status = "Saved"
 
         # check and clear user unapproved message first
         if custom_message is not None:
-            sql.delgvar("unapproved_msg")
+            sql.delgvar(change)
             status = "Updated"
 
-        if message:
-            # TODO: allow user to have a custom text formatting
-            # eg: bold, underline, striketrough, link
-            # for now all text are in monoscape
-            msg = message.message  # get the plain text
-            sql.addgvar("unapproved_msg", msg)
-        else:
+        if not message:
             return await cust_msg.edit("`Reply to a message`")
 
-        await cust_msg.edit("`Message saved as unapproved message`")
+        # TODO: allow user to have a custom text formatting
+        # eg: bold, underline, striketrough, link
+        # for now all text are in monoscape
+        msg = message.message  # get the plain text
+        sql.addgvar(change, msg)
+        await cust_msg.edit(f"`Message saved as {'unapproved' if change == 'unapproved_msg' else 'block'} message`")
 
         if BOTLOG:
             await cust_msg.client.send_message(
-                BOTLOG_CHATID, f"***{status} Unapproved message :*** \n\n{msg}"
+                BOTLOG_CHATID, f"***{status} {'Unapproved' if change == 'unapproved_msg' else 'block'} message :*** \n\n{msg}"
             )
 
     if conf.lower() == "reset":
         if custom_message is not None:
-            sql.delgvar("unapproved_msg")
-            await cust_msg.edit("`Unapproved message reset to default`")
+            sql.delgvar(change)
+            await cust_msg.edit(f"`{'Unapproved' if change == 'unapproved_msg' else 'block'} message reset to default`")
         else:
             await cust_msg.edit("`You haven't set a custom message yet`")
 
     if conf.lower() == "get":
         if custom_message is not None:
             await cust_msg.edit(
-                "***This is your current unapproved message:***" f"\n\n{custom_message}"
+                f"***This is your current {'unapproved' if change == 'unapproved_msg' else 'block'} message:***" f"\n\n{custom_message}"
             )
         else:
             await cust_msg.edit(
-                "*You Have not set unapproved message yet*\n"
-                f"Using default message: \n\n`{DEF_UNAPPROVED_MSG}`"
+                "*You Have not set {unapproved} message yet*\n"
+                f"Using default message: \n\n`{DEF_UNAPPROVED_MSG if change == 'unapproved_msg' else DEF_BLOCKED_MSG.format('(user mention)')}`"
             )
 
 
@@ -400,6 +394,12 @@ CMD_HELP.update(
 \nUsage: Get your current Unapproved message\
 \n\n.reset pm_msg\
 \nUsage: Get your remove your Unapproved message\
+\n\n.set pm_block_msg <reply to msg>\
+\nUsage: Set your own auto block message\
+\n\n.get pm_block_msg\
+\nUsage: Get your current auto block message\
+\n\n.reset pm_block_msg\
+\nUsage: Get your remove your auto block message\
 \n\n*Custom unapproved message currently not able to set\
 \nformated text like bold, underline, link, etc.\
 \nMessage will send in monoscape only"
