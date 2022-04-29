@@ -17,10 +17,12 @@ async def speedtest(event):
     await event.edit("`Running speed test...`")
 
     test = Speedtest()
+    await event.edit("`Choosing best server...`")
     test.get_best_server()
+    await event.edit("`Testing download speed...`")
     test.download()
+    await event.edit("`Testing upload speed...`")
     test.upload()
-    test.results.share()
     result = test.results.dict()
 
     msg = (
@@ -35,13 +37,7 @@ async def speedtest(event):
         f"`Sponsor:` `{result['server']['sponsor']}`\n\n"
     )
 
-    await event.client.send_file(
-        event.chat_id,
-        result["share"],
-        caption=msg,
-    )
-    await event.delete()
-    
+    await event.edit(msg)    
 
 @register(outgoing=True, pattern="^.speed$")
 async def speedtst(spd):
