@@ -1290,6 +1290,26 @@ async def fprom(event):
     time.sleep(3.0)
     await event.edit("`Promoted Successfully! Now gib party!`")
 
+@register(outgoing=True, pattern="^\.meme$")
+async def mem(event):
+    await event.edit("`Getting a meme from reddit...`")
+    subs = ['memes','ComedyCemetery','dankmemes']
+    sub = random.choice(subs)
+    try:
+        memejson = requests.get(f"https://meme-api.herokuapp.com/gimme/{sub}").json()
+        img = memejson['url']
+        title = memejson['title']
+        lin = memejson['postLink']
+    except:
+        await event.edit("`no meme today, sad...`")
+        return
+    await event.client.send_file(
+        event.chat_id,
+        img,
+        caption=(f"{title}\n[Post Link]({lin})")
+        )
+    await event.delete()
+
 @register(outgoing=True, pattern=r"^.f (.*)")
 async def payf(event):
     paytext = event.pattern_match.group(1)
