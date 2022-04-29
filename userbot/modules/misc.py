@@ -5,7 +5,7 @@
 import io
 import sys
 from os import execl
-from random import randint
+from random import choice
 from time import sleep
 
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
@@ -16,15 +16,15 @@ from userbot.utils import time_formatter
 @register(outgoing=True, pattern="^.random")
 async def randomise(items):
     """ For .random command, get a random item from the list of items. """
-    itemo = (items.text[8:]).split()
+    itemo = (items.text[8:]).split(" ")
     if len(itemo) < 2:
         await items.edit(
             "`2 or more items are required! Check .help random for more info.`"
         )
         return
-    index = randint(1, len(itemo) - 1)
+    rand = choice(itemo)
     await items.edit(
-        "**Query: **\n`" + items.text[8:] + "`\n**Output: **\n`" + itemo[index] + "`"
+        "**Query: **\n`" + items.text[8:] + "`\n**Output: **\n`" + rand + "`"
     )
 
 
