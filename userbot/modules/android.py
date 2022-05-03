@@ -240,7 +240,9 @@ async def devices_specifications(request):
     i = 0
 
     while i < res:
-        if device.lower() in devs[i]['phone_name'].lower() and devs[i]['brand'].lower() == brand.lower():
+        phonename = devs[i]['phone_name'].replace("(","").replace(")","") #replace ( and ) in phone names
+        chk = all(elem in phonename.lower().split(" ") for elem in device.lower().split(" "))
+        if chk and devs[i]['brand'].lower() == brand.lower():
                 phun = i
         i += 1
     try:
