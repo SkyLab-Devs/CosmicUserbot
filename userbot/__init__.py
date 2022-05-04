@@ -156,7 +156,7 @@ COUNTRY = str(os.environ.get("COUNTRY") or "")
 TZ_NUMBER = os.environ.get("TZ_NUMBER") or 1
 
 # Version of Project Fizilion
-USERBOT_VERSION = "4.0"
+USERBOT_VERSION = "4.5"
 
 # User Terminal alias
 USER_TERM_ALIAS = os.environ.get("USER_TERM_ALIAS") or "starfire"
