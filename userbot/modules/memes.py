@@ -1310,6 +1310,16 @@ async def mem(event):
         )
     await event.delete()
 
+@register(outgoing=True, pattern="^\.joke$")
+async def jok(event):
+    channel = await event.client.get_entity("t.me/r_jokes")
+    async for message in event.client.iter_messages(channel,limit=1):
+        latest_message_id = message.id
+    joke_id = randint(1,latest_message_id)
+    async for message in event.client.iter_messages(channel,limit=1,ids=joke_id):
+        joke = message.text
+    await event.edit(joke)
+
 @register(outgoing=True, pattern=r"^.f (.*)")
 async def payf(event):
     paytext = event.pattern_match.group(1)
@@ -1837,6 +1847,8 @@ CMD_HELP.update(
 \nUsage: Make a quick decision.\
 \n\n.meme\
 \nUsage: Get a random meme from reddit!\
+\n\n.joke\
+\nUsage: Get a random joke from @r_jokes!\
 \n\n.scam <action> <time>\
 \n[Available Actions: (typing, contact, game, location, voice, round, video, photo, document, cancel)]\
 \nUsage: Create fake chat actions, for fun. (Default action: typing)\
