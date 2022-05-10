@@ -17,6 +17,8 @@ google-auth-oauthlib
 googletrans
 google_images_download
 gpytranslate
+gTTS
+gTTS-token
 hachoir
 heroku3
 html_telegraph_poster
