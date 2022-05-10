@@ -16,6 +16,8 @@ from bs4 import BeautifulSoup
 from emoji import get_emoji_regexp
 from google_trans_new import LANGUAGES, google_translator
 from googletrans import Translator
+from gtts import gTTS
+from gtts.lang import tts_langs
 from gpytranslate import Translator as tr
 from requests import get
 from duckduckgo_search import ddg
@@ -307,6 +309,50 @@ async def urban_dict(event):
         return await event.edit(result)
 
 
+@register(outgoing=True, pattern=r"^\.tts(?: |$)([\s\S]*)")
+async def text_to_speech(query):
+    """ For .tts command, a wrapper for Google Text-to-Speech. """
+
+    if query.is_reply and not query.pattern_match.group(1):
+        message = await query.get_reply_message()
+        message = str(message.message)
+    else:
+        message = str(query.pattern_match.group(1))
+
+    if not message:
+        return await query.edit(
+            "`Give a text or reply to a message for Text-to-Speech!`"
+        )
+
+    await query.edit("`Processing...`")
+
+    try:
+        gTTS(message, lang=TTS_LANG)
+    except AssertionError:
+        return await query.edit(
+            "The text is empty.\n"
+            "Nothing left to speak after pre-precessing, tokenizing and cleaning."
+        )
+    except ValueError:
+        return await query.edit("Language is not supported.")
+    except RuntimeError:
+        return await query.edit("Error loading the languages dictionary.")
+    tts = gTTS(message, lang=TTS_LANG)
+    tts.save("k.mp3")
+    with open("k.mp3", "rb") as audio:
+        linelist = list(audio)
+        linecount = len(linelist)
+    if linecount == 1:
+        tts = gTTS(message, lang=TTS_LANG)
+        tts.save("k.mp3")
+    with open("k.mp3", "r"):
+        await query.client.send_file(query.chat_id, "k.mp3", voice_note=True)
+        os.remove("k.mp3")
+        if BOTLOG:
+            await query.client.send_message(
+                BOTLOG_CHATID, "Text to Speech executed successfully !"
+            )
+    await query.delete()
 
 # kanged from Blank-x ;---;
 @register(outgoing=True, pattern=r"^\.imdb (.*)")
