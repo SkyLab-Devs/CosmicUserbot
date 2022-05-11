@@ -101,7 +101,7 @@ async def dspammer(dspam):
         await dspam.delete()
         return
     await dspam.delete()
-    for _ in range(1, counter):
+    for _ in range(0, counter):
         await dspam.respond(spam_message)
         await sleep(spamDelay)
     if BOTLOG:
