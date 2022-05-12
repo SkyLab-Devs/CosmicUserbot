@@ -52,9 +52,4 @@ bot.loop.run_until_complete(start())
 LOGS.info(
     "Congratulations, your userbot is now running !! Test it by typing .alive / .on in any chat."
     "If you need assistance, head to https://t.me/CosmicUserbotChat")
-if HEROKU_APP_NAME is not None and HEROKU_API_KEY is not None:
-    print("HEROKU detected, sleeping for 5 minutes to prevent String Session Error")
-    LOGS.info("HEROKU detected, sleeping for 5 minutes to prevent String Session Error")
-    sleep(300)
-    bot.run_until_disconnected()
 bot.run_until_disconnected()
