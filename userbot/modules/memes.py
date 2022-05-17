@@ -777,6 +777,16 @@ async def slap(replied_user, event):
 
     return caption
 
+@register(outgoing=True, pattern="^.sp(?: |$)(.*)")
+async def spoil(event):
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await event.edit("`How can I make spoilers without text?`")
+        return
+    await event.edit(f"<spoiler> {args} </spoiler>",parse_mode='html')
 
 @register(outgoing=True, pattern="^-_-$", ignore_unsafe=True)
 async def emo(sigh):
@@ -1849,6 +1859,8 @@ CMD_HELP.update(
 \nUsage: Get a random meme from reddit!\
 \n\n.joke\
 \nUsage: Get a random joke from @r_jokes!\
+\n\n.sp <text>\
+\nUsage: Make spoiler text\
 \n\n.scam <action> <time>\
 \n[Available Actions: (typing, contact, game, location, voice, round, video, photo, document, cancel)]\
 \nUsage: Create fake chat actions, for fun. (Default action: typing)\
