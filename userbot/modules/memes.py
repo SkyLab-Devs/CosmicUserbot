@@ -1361,11 +1361,9 @@ async def let_me_google_that_for_you(lmgtfy_q):
         query = query.message
     query_encoded = query.replace(" ", "+")
     lfy_url = f"http://lmgtfy.com/?s=g&iie=1&q={query_encoded}"
-    payload = {"format": "json", "url": lfy_url}
-    r = requests.get("http://is.gd/create.php", params=payload)
     await lmgtfy_q.edit(
         f"Here you are, help yourself.\
-    \n[{query}]({r.json()['shorturl']})"
+    \n[{query}]({lfy_url})"
     )
 
 
