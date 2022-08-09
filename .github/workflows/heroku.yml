@@ -18,13 +18,3 @@ jobs:
           heroku_app_name: ${{secrets.FROST_APP_NAME}}
           heroku_email: ${{secrets.FROST_EMAIL}}
 
-  prajjusdeploy:
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/starfire'
-    steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.PRAJJUS_HEROKU_API_KEY}}
-          heroku_app_name: ${{secrets.PRAJJUS_APP_NAME}}
-          heroku_email: ${{secrets.PRAJJUS_EMAIL}}
