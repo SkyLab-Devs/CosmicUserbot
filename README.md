@@ -41,10 +41,14 @@ curl -L https://git.io/Jyiwj > session_gen.sh && bash session_gen.sh
 
 ## How To Host?
 
-### Deploy on Heroku
+### Deploy on Heroku [RIP]
 Make sure you have an account of heroku and follow all the steps required.
 
 <p align="left"><a href="https://heroku.com/deploy?template=https://github.com/SkyLab-Devs/CosmicUserbot/tree/demon"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" /></a></p>
+
+### Deploy on Local
+
+<b>Checkout the guide:</b> <a href="https://github.com/SkyLab-Devs/CosmicUserbot/blob/starfire/localsetup.md">Here</a>
 
 ## Groups and Support
 
