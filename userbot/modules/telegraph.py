@@ -11,7 +11,7 @@ from telegraph import Telegraph, exceptions, upload_file
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
 
-telegraph = Telegraph()
+telegraph = Telegraph(domain="graph.org")
 r = telegraph.create_account(short_name="telegraph")
 auth_url = r["auth_url"]
 
